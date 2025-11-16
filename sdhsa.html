@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: Phân Tích Đơn Thuốc và Mã Chẩn Đoán ICD-10</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            max-height: 400px;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .card {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease-in-out;
+        }
+        .card:hover {
+            border-color: #2f81f7;
+            box-shadow: 0 0 20px rgba(47, 129, 247, 0.2);
+        }
+        .flow-line::after {
+            content: '→';
+            color: #2f81f7;
+            font-size: 2rem;
+            margin: 0 1rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-2">Thu Thủy Đã Phân Tích Đơn Thuốc</h1>
+            <p class="text-lg md:text-xl text-gray-400">Liên kết giữa thuốc điều trị và các mã chẩn đoán ICD-10 tiềm năng</p>
+        </header>
+
+        <main class="space-y-8">
+            <section id="prescription" class="card">
+                <h2 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Tổng Quan Đơn Thuốc</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 text-center">
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <h3 class="font-semibold text-cyan-400">Mibetel HCT</h3>
+                        <p class="text-sm text-gray-400">Telmisartan + Hydrochlorothiazid</p>
+                        <p class="text-2xl font-bold mt-2">30 viên</p>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <h3 class="font-semibold text-cyan-400">Savi Trimetazidine</h3>
+                        <p class="text-sm text-gray-400">Trimetazidin 35MR</p>
+                        <p class="text-2xl font-bold mt-2">30 viên</p>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <h3 class="font-semibold text-cyan-400">Kacetam</h3>
+                        <p class="text-sm text-gray-400">Piracetam 800mg</p>
+                        <p class="text-2xl font-bold mt-2">40 viên</p>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <h3 class="font-semibold text-cyan-400">Omeprazole Stada</h3>
+                        <p class="text-sm text-gray-400">Omeprazol 40mg</p>
+                        <p class="text-2xl font-bold mt-2">20 viên</p>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <h3 class="font-semibold text-cyan-400">Atorvastatin 20</h3>
+                        <p class="text-sm text-gray-400">Atorvastatin</p>
+                        <p class="text-2xl font-bold mt-2">28 viên</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="analysis" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 card">
+                    <h2 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Sơ Đồ Phân Tích: Thuốc → Bệnh lý → Mã ICD-10</h2>
+                    <p class="text-gray-400 mb-6">Sơ đồ dưới đây minh họa mối liên hệ từ mỗi loại thuốc được kê đơn đến các nhóm bệnh lý có thể là nguyên nhân, và các mã ICD-10 tương ứng được đề xuất.</p>
+                    <div class="space-y-6">
+                        <div class="flex flex-col md:flex-row items-center justify-between bg-gray-800/50 p-4 rounded-lg">
+                            <div class="text-center md:text-left mb-4 md:mb-0">
+                                <h4 class="font-bold text-lg text-cyan-400">Mibetel HCT / Atorvastatin / Trimetazidin</h4>
+                                <p class="text-sm text-gray-400">Thuốc điều trị Tim mạch & Rối loạn chuyển hóa</p>
+                            </div>
+                            <div class="flow-line hidden md:block"></div>
+                            <div class="text-center">
+                                <span class="font-semibold text-white">Bệnh lý Tim Mạch</span>
+                                <div class="mt-2 space-y-1">
+                                    <p class="text-sm bg-blue-900/50 text-blue-300 px-2 py-1 rounded">I10: Tăng huyết áp</p>
+                                    <p class="text-sm bg-blue-900/50 text-blue-300 px-2 py-1 rounded">I20: Đau thắt ngực</p>
+                                    <p class="text-sm bg-green-900/50 text-green-300 px-2 py-1 rounded">E78: Rối loạn mỡ máu</p>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="flex flex-col md:flex-row items-center justify-between bg-gray-800/50 p-4 rounded-lg">
+                            <div class="text-center md:text-left mb-4 md:mb-0">
+                                <h4 class="font-bold text-lg text-cyan-400">Piracetam (Kacetam)</h4>
+                                <p class="text-sm text-gray-400">Thuốc hướng thần kinh</p>
+                            </div>
+                            <div class="flow-line hidden md:block"></div>
+                            <div class="text-center">
+                                <span class="font-semibold text-white">Bệnh lý Mạch máu não & Triệu chứng</span>
+                                <div class="mt-2 space-y-1">
+                                     <p class="text-sm bg-blue-900/50 text-blue-300 px-2 py-1 rounded">I67: Bệnh mạch máu não khác</p>
+                                     <p class="text-sm bg-red-900/50 text-red-300 px-2 py-1 rounded">R42: Hoa mắt và chóng mặt</p>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="flex flex-col md:flex-row items-center justify-between bg-gray-800/50 p-4 rounded-lg">
+                            <div class="text-center md:text-left mb-4 md:mb-0">
+                                <h4 class="font-bold text-lg text-cyan-400">Omeprazole Stada</h4>
+                                <p class="text-sm text-gray-400">Thuốc ức chế bơm proton</p>
+                            </div>
+                            <div class="flow-line hidden md:block"></div>
+                            <div class="text-center">
+                                <span class="font-semibold text-white">Bệnh lý Dạ dày & Tiêu hóa</span>
+                                <div class="mt-2 space-y-1">
+                                    <p class="text-sm bg-yellow-900/50 text-yellow-300 px-2 py-1 rounded">K21: Trào ngược dạ dày-thực quản</p>
+                                    <p class="text-sm bg-yellow-900/50 text-yellow-300 px-2 py-1 rounded">K25: Loét dạ dày</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h2 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Phân Bố Chẩn Đoán</h2>
+                    <p class="text-gray-400 mb-6">Biểu đồ thể hiện tỷ lệ các nhóm bệnh lý tiềm năng dựa trên các loại thuốc được kê đơn, phân loại theo chương của ICD-10.</p>
+                    <div class="chart-container">
+                        <canvas id="icdChapterChart"></canvas>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="text-center mt-12 pt-8 border-t border-gray-800">
+            <p class="text-sm text-gray-500">
+                Lưu ý quan trọng: Thông tin trên chỉ mang tính chất tham khảo và minh họa. Việc chẩn đoán và áp mã chính xác phải được thực hiện bởi bác sĩ hoặc chuyên gia y tế có chuyên môn.
+            </p>
+            <!-- 
+                Infographic created using Chart.js and Tailwind CSS.
+                Confirmation: NEITHER Mermaid JS NOR SVG were used in this output.
+                Color Palette: Brilliant Blues (custom implementation)
+            -->
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrapLabel = (label, maxLength) => {
+                if (label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > maxLength && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                if (currentLine.length > 0) {
+                    lines.push(currentLine);
+                }
+                return lines;
+            };
+
+            const ctx = document.getElementById('icdChapterChart').getContext('2d');
+            const icdChapterChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: [
+                        'Bệnh tuần hoàn (Chương IX)',
+                        'Bệnh tiêu hóa (Chương XI)',
+                        'Bệnh nội tiết, dinh dưỡng, chuyển hóa (Chương IV)',
+                        'Triệu chứng & Dấu hiệu (Chương XVIII)'
+                    ],
+                    datasets: [{
+                        label: 'Số lượng chẩn đoán tiềm năng',
+                        data: [3, 2, 1, 1],
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.7)', 
+                            'rgba(16, 185, 129, 0.7)',
+                            'rgba(234, 179, 8, 0.7)',  
+                            'rgba(239, 68, 68, 0.7)'   
+                        ],
+                        borderColor: [
+                            'rgba(59, 130, 246, 1)',
+                            'rgba(16, 185, 129, 1)',
+                            'rgba(234, 179, 8, 1)',
+                            'rgba(239, 68, 68, 1)'
+                        ],
+                        borderWidth: 1,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#c9d1d9',
+                                font: {
+                                    size: 12
+                                },
+                                boxWidth: 15,
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                      return label.join(' ');
+                                    } else {
+                                      return label;
+                                    }
+                                }
+                            }
+                        },
+                        title: {
+                            display: false,
+                        }
+                    },
+                    cutout: '60%'
+                }
+            });
+        });
+    </script>
+</body>
+</html>
